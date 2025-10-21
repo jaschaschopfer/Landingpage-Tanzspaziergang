@@ -1,11 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-/* Now you can define your CSS variables below: */
-
-:root {
-  --font-family-header: 'Playfair Display', serif;
-  --font-family-body: 'Poppins', sans-serif;
-}
 
 
 /* CSS RESET 2025 */
@@ -166,3 +160,148 @@
     --transition-duration: 0.3s;
     --box-shadow-base: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+/* Global Styles */
+
+body {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-text-dark);
+  background-color: var(--color-background-primary);
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-header);
+  color: var(--color-accent-primary);
+  margin-bottom: calc(var(--spacing-base) / 2);
+}
+
+a {
+  color: var(--color-accent-secondary);
+  text-decoration: none;
+  transition: color var(--transition-duration);
+}
+
+a:hover {
+  color: darken(var(--color-accent-secondary), 10%);
+}
+
+button {
+  font-family: var(--font-family-body);
+  background-color: var(--color-accent-secondary);
+  color: var(--color-text-light);
+  border: none;
+  border-radius: var(--border-radius-base);
+  padding: calc(var(--spacing-base) / 2) var(--spacing-base);
+  cursor: pointer;
+  transition: background-color var(--transition-duration);
+}
+
+button:hover {
+  background-color: var(--color-accent-primary);
+  transform: scale(1.05);
+
+}
+
+section {
+  padding: var(--spacing-base);
+  background-color: var(--color-background-secondary);
+  margin-bottom: var(--spacing-base);
+  box-shadow: var(--box-shadow-base);
+  border-radius: var(--border-radius-base);
+}
+
+div {
+  
+}
+
+p {
+  margin-bottom: var(--spacing-base);
+}
+
+/* for checkboxes, text inputs */
+
+input[type="checkbox"] {
+    appearance: auto;
+    accent-color: var(--color-accent-primary);
+    width: 1.2em;
+    height: 1.2em;
+    cursor: pointer;
+}
+input[type="checkbox"]:hover {
+    accent-color: var(--color-accent-primary);
+    filter: brightness(0.9);
+}
+
+input[type="text"], input[type="email"] {
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius-base);
+    padding: calc(var(--spacing-base) / 2);
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: var(--spacing-base);
+}
+input[type="text"]:focus, input[type="email"]:focus {
+    border-color: var(--color-accent-primary);
+    outline: none;
+    box-shadow: 0 0 5px var(--color-accent-primary);
+}
+
+/* End of Global Styles */
+
+/* Newsletter Section Styles */
+
+section.newsletter-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.newsletter-section h1 {
+    font-size: 2rem;
+    margin-bottom: calc(var(--spacing-base) * 1.5);
+    text-align: center;
+}
+
+.credentials-box {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.date-selection {
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: var(--spacing-base);
+}
+
+.newsletter-form label {
+    display: block;
+    margin-bottom: calc(var(--spacing-base) / 4);
+    font-weight: var(--font-weight-semibold);
+}
+
+.newsletter-form input[type="text"],
+.newsletter-form input[type="email"] {
+    margin-bottom: var(--spacing-base);
+}
+
+.newsletter-form button {
+    font-size: 1rem;
+}
+
+.date-checkboxes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-base);
+    margin-bottom: var(--spacing-base);
+}
+
+
+/* End of Newsletter Section Styles */
+
+
+
