@@ -21,30 +21,38 @@
     <main>
 
         <section class="newsletter-section">
-            <h1>Newsletter Anmeldung</h1>
+            <h1>Errinerung Erhalten</h1>
             <div class="credentials-box">
                 <form action="https://example.com/subscribe" method="post" class="newsletter-form">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" required>
                     <label for="email">E-Mail:</label>
                     <input type="email" id="email" name="email" required>
+                    <div class="date-selection">
+                <h3>Wählen Sie Ihre Termine:</h3>
+                
+                <div class="checkbox-dropdown-container">
+                    <button type="button" class="dropdown-toggle" aria-expanded="false" aria-controls="date-checkbox-list">
+                        Termine Auswählen
+                    </button>
+                    
+                    <div id="date-checkbox-list" class="dropdown-list">
+                        <label><input type="checkbox" name="dates" value="2024-05-03"> Fr, 03.05.2024</label>
+                        <label><input type="checkbox" name="dates" value="2024-05-31"> Fr, 31.05.2024</label>
+                        <label><input type="checkbox" name="dates" value="2024-06-28"> Fr, 28.06.2024</label>
+                        <label><input type="checkbox" name="dates" value="2024-07-26"> Fr, 26.07.2024</label>
+                        <label><input type="checkbox" name="dates" value="2024-08-02"> Fr, 02.08.2024</label>
+                        <label><input type="checkbox" name="dates" value="2024-08-09"> Fr, 09.08.2024</label>
+                        <label><input type="checkbox" name="dates" value="2024-08-16"> Fr, 16.08.2024</label>
+                        <label><input type="checkbox" name="dates" value="2024-08-23"> Fr, 23.08.2024</label>
+                        <label><input type="checkbox" name="dates" value="2024-08-30"> Fr, 30.08.2024</label>
+                    </div>
+                </div>
+            </div>
+                    <button type="submit">Anmelden</button>
                 </form>
             </div>
-            <div class="date-selection">
-                    <h3>Wählen Sie Ihre Termine:</h3>
-                        <div class="date-checkboxes">
-                            <label><input type="checkbox" name="dates" value="2024-05-03"> Fr, 03.05.2024</label>
-                            <label><input type="checkbox" name="dates" value="2024-05-31"> Fr, 31.05.2024</label>
-                            <label><input type="checkbox" name="dates" value="2024-06-28"> Fr, 28.06.2024</label>
-                            <label><input type="checkbox" name="dates" value="2024-07-26"> Fr, 26.07.2024</label>
-                            <label><input type="checkbox" name="dates" value="2024-08-02"> Fr, 02.08.2024</label>
-                            <label><input type="checkbox" name="dates" value="2024-08-09"> Fr, 09.08.2024</label>
-                            <label><input type="checkbox" name="dates" value="2024-08-16"> Fr, 16.08.2024</label>
-                            <label><input type="checkbox" name="dates" value="2024-08-23"> Fr, 23.08.2024</label>
-                            <label><input type="checkbox" name="dates" value="2024-08-30"> Fr, 30.08.2024</label>
-                        </div>
-                    <button type="submit">Anmelden</button>
-            </div>
+            
 
         </section>
 
@@ -57,5 +65,6 @@
 
     </main>
 
+    <script src="script.js"></script> 
 </body>
 </html>

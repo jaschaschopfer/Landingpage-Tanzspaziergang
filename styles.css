@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baumans&display=swap');
 
 
 
@@ -141,7 +142,7 @@
 
 :root {
   /* FONT FAMILIES */
-  --font-family-header: 'Playfair Display', serif; /* Theatrical, expressive headlines (H1, H2) */
+  --font-family-header: 'Baumans', sans-serif; /* Theatrical, expressive headlines (H1, H2) */
   --font-family-body: 'Poppins', sans-serif;       /* Clean, readable text (Paragraphs, navigation, buttons) */
   
   /* FONT WEIGHTS */
@@ -214,9 +215,6 @@ section {
   border-radius: var(--border-radius-base);
 }
 
-div {
-  
-}
 
 p {
   margin-bottom: var(--spacing-base);
@@ -253,6 +251,7 @@ input[type="text"]:focus, input[type="email"]:focus {
 
 /* End of Global Styles */
 
+
 /* Newsletter Section Styles */
 
 section.newsletter-section {
@@ -276,6 +275,8 @@ section.newsletter-section {
     max-width: 400px;
     margin: 0 auto;
     margin-top: var(--spacing-base);
+    /* Ensure date-selection also has relative positioning if needed for other elements, 
+       but for the dropdown it's only needed on .checkbox-dropdown-container */
 }
 
 .newsletter-form label {
@@ -291,17 +292,97 @@ section.newsletter-section {
 
 .newsletter-form button {
     font-size: 1rem;
+    /* Ensure the button is full width inside the form context */
+    /* width: 100%;  */
+    margin-top: var(--spacing-base);
 }
 
-.date-checkboxes {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-base);
+
+/* START OF NEW DROPDOWN STYLES */
+
+.checkbox-dropdown-container {
+    /* CRITICAL: Allows the dropdown list to position itself absolutely right below the button */
+    position: relative;
+    display: inline-block;
+    width: 100%; /* Take up the full width of its parent (.date-selection) */
     margin-bottom: var(--spacing-base);
 }
 
+.dropdown-toggle {
+    /* Style the button to look like a standard select box */
+    font-family: var(--font-family-body);
+    background-color: var(--color-background-secondary); /* Match section background */
+    color: var(--color-text-dark); /* Use primary text color */
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius-base);
+    padding: calc(var(--spacing-base) / 2) var(--spacing-base);
+    cursor: pointer;
+    transition: all var(--transition-duration);
+    text-align: left;
+    width: 100%;
+    
+    /* Custom Dropdown Arrow Icon (using SVG data URI) */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="%232E3A47" d="M8 12l-6-6h12l-6 6z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right calc(var(--spacing-base) / 2) center;
+    padding-right: calc(var(--spacing-base) * 2); /* Make space for the icon */
+}
+
+.dropdown-toggle:hover {
+    background-color: #f0f0f0; /* Slight hover effect */
+    transform: none; /* Override global button hover transform */
+}
+
+.dropdown-list {
+    /* Dropdown box positioning and appearance */
+    position: absolute;
+    top: 100%; /* Place it right below the toggle button */
+    left: 0;
+    z-index: 1000; /* Ensure it stays above other content */
+    border: 1px solid var(--color-accent-primary); /* Use a brand color for the border */
+    background-color: var(--color-background-secondary);
+    box-shadow: var(--box-shadow-base);
+    border-radius: var(--border-radius-base);
+    padding: calc(var(--spacing-base) / 4) 0;
+    max-height: 250px; /* Limits height, making it scrollable */
+    overflow-y: auto;
+    width: 100%; 
+
+    /* Initially hide the list */
+    display: none;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+/* Style for individual checkbox labels inside the list */
+.dropdown-list label {
+    display: flex; /* Use flex to align checkbox and text */
+    align-items: center;
+    padding: 8px 15px;
+    cursor: pointer;
+    white-space: nowrap;
+    margin-bottom: 0; /* Override .newsletter-form label margin */
+}
+
+.dropdown-list label:hover {
+    background-color: #f0f0f0; /* Light hover effect for list items */
+}
+
+.dropdown-list input[type="checkbox"] {
+    /* Space between checkbox and text */
+    margin-right: 8px; 
+    flex-shrink: 0;
+}
+
+/* Show the list when the 'active' class is added by JavaScript */
+.dropdown-list.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* END OF NEW DROPDOWN STYLES */
+
 
 /* End of Newsletter Section Styles */
-
-
-
