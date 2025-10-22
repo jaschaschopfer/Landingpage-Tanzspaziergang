@@ -250,6 +250,27 @@ input[type="text"]:focus, input[type="email"]:focus {
 
 /* End of Global Styles */
 
+/* Banner Section Styles */
+.banner {
+  position: relative;
+  overflow: hidden;
+}
+.banner-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.banner-text {
+  position: absolute;
+  inset: auto 1rem 1rem 1rem; /* bottom overlay */
+  background: rgba(0,0,0,.5);
+  color: #fff;
+  padding: .75rem 1rem;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  line-height: 1.35;
+}
+
 
 /* Newsletter Section Styles */
 

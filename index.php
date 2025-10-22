@@ -1,0 +1,95 @@
+<?php
+// read banner text from a flat file
+$bannerFile = __DIR__ . '/banner.txt';
+$bannerText = is_readable($bannerFile) ? trim(file_get_contents($bannerFile)) : '';
+?>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Landing page für Tanzspaziergang unterwegs" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="assets/icons/" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Unterwegs</title>
+</head>
+<body>
+
+<header>
+  <?php if ($bannerText !== ''): ?>
+    <section class="banner" role="region" aria-label="Aktuelle Mitteilung">
+      <img src="assets/images/banner.png" alt="Unterwegs banner" class="banner-image" />
+      <div class="banner-text"><?= nl2br(htmlspecialchars($bannerText, ENT_QUOTES, 'UTF-8')) ?></div>
+    </section>
+  <?php endif; ?>
+</header>
+
+<main>
+
+  <section class="newsletter-section">
+    <h1>Erinnerung erhalten</h1>
+    <div class="credentials-box">
+      <form action="https://example.com/subscribe" method="post" class="newsletter-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">E-Mail:</label>
+        <input type="email" id="email" name="email" required>
+
+        <div class="date-selection">
+          <h3>Wählen Sie Ihre Termine:</h3>
+
+          <div class="checkbox-dropdown-container">
+            <button type="button" class="dropdown-toggle" aria-expanded="false" aria-controls="date-checkbox-list">
+              Termine auswählen
+            </button>
+
+            <div id="date-checkbox-list" class="dropdown-list">
+              <h4 class="category-header">Premiere</h4>
+              <label><input type="checkbox" value="2024-05-03"> Fr, 03.05.2024</label>
+
+              <h4 class="category-header">Frühsommer</h4>
+              <label><input type="checkbox" value="2024-05-31"> Fr, 31.05.2024</label>
+              <label><input type="checkbox" value="2024-06-28"> Fr, 28.06.2024</label>
+              <label><input type="checkbox" value="2024-07-26"> Fr, 26.07.2024</label>
+              <label><input type="checkbox" value="2024-08-02"> Fr, 02.08.2024</label>
+              <label><input type="checkbox" value="2024-08-09"> Fr, 09.08.2024</label>
+              <label><input type="checkbox" value="2024-08-16"> Fr, 16.08.2024</label>
+              <label><input type="checkbox" value="2024-08-23"> Fr, 23.08.2024</label>
+
+              <h4 class="category-header">Spätsommer</h4>
+              <label><input type="checkbox" value="2024-08-30"> Fr, 30.08.2024</label>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit">Anmelden</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="thank-you-section">
+    <h2>Vielen Dank für Ihre Anmeldung!</h2>
+    <p>Wir freuen uns, Sie bei unseren Tanzspaziergängen begrüßen zu dürfen.</p>
+  </section>
+
+  <section class="pictures-between-text">
+    <img src="assets/images/dance1.jpg" alt="Tanzspaziergang Bild 1" class="right-image">
+  </section>
+
+  <section class="introduction-section">
+    <h2>Willkommen zu unseren Tanzspaziergängen!</h2>
+    <p>Erleben Sie die Kombination aus Tanz und Natur in unseren einzigartigen Veranstaltungen.</p>
+  </section>
+
+  <section class="pictures-between-text">
+    <img src="assets/images/dance2.jpg" alt="Tanzspaziergang Bild 2" class="left-image">
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
