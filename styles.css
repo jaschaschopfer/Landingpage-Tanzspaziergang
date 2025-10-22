@@ -209,7 +209,7 @@ button:hover {
 
 section {
   padding: var(--spacing-base);
-  margin-bottom: var(--spacing-base);
+  margin-bottom: calc(var(--spacing-base) * 2);
   box-shadow: var(--box-shadow-base);
   border-radius: var(--border-radius-base);
 }
@@ -469,36 +469,48 @@ section.newsletter-section.hidden {
 
 /* Pictures Between Text Styles */
 
-section.pictures-between-text-section {
-    padding: var(--spacing-base);
-    background-color: none;
-    margin-bottom: var(--spacing-base);
-    box-shadow: var(--box-shadow-base);
-    border-radius: var(--border-radius-base);
+section.hanging-pictures{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none;
+  padding: var(--spacing-base);
 }
 
-.pictures-between-text {
-    display: flex;
-    margin: var(--spacing-base) 0;
+section.hanging-pictures img {
+  width: auto;
+  height: 300px;
+  object-fit: cover;
+  border-radius: var(--border-radius-base);
+  box-shadow: var(--box-shadow-base);
 }
 
-.pictures-between-text img {
-    max-width: 70%;
-    height: auto;
-    border-radius: var(--border-radius-base);
-    box-shadow: var(--box-shadow-base);
-    justify-self: right;
+
+
+/* End of Pictures Between Text Styles */
+
+
+/* Introduction Section Styles */
+.introduction-section {
+  background-color: var(--color-background-secondary);
+  max-width: 80%;
+  margin-inline-end: auto; /* Align to left */
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: calc(var(--border-radius-base) * 15);
+  border-bottom-right-radius: calc(var(--border-radius-base) * 15);
 }
 
-.right-image {
-    margin: 0 0 1rem 1rem;
-    max-width: 50%;
-  
+/* End of Introduction Section Styles */
 
-}
 
-.left-image {
-    float: left;
-    margin: 0 1rem 1rem 0;
-    max-width: 50%;
+/* Info Section Styles */
+.info-section {
+  background-color: var(--color-background-secondary);
+  max-width: 80%;
+  margin-inline-start: auto; /* Align to right */
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: calc(var(--border-radius-base) * 15);
+  border-bottom-left-radius: calc(var(--border-radius-base) * 15);
 }
