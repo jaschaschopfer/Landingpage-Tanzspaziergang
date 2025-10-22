@@ -1,18 +1,32 @@
+// Global utility for simulating backend call
+function simulateBackendCall(data, delayMs = 1500) {
+    // This function runs asynchronously in the background.
+    // Replace this with your actual fetch request later (e.g., fetch(form.action, { method: 'POST', body: data }))
+    return new Promise(resolve => {
+        console.log("Starting asynchronous backend submission for:", Object.fromEntries(data));
+        
+        // TEMPORARY SIMULATION: Wait for the network delay
+        setTimeout(() => {
+            console.log("Backend submission placeholder complete.");
+            resolve(true); // Assuming success for the simulation
+        }, delayMs);
+    });
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
+    // DOM Element References
     const container = document.querySelector('.checkbox-dropdown-container');
     const toggleButton = container.querySelector('.dropdown-toggle');
     const dropdownList = container.querySelector('.dropdown-list');
     const checkboxes = dropdownList.querySelectorAll('input[type="checkbox"]');
     const form = document.querySelector('.newsletter-form');
     
-    // NEW ELEMENTS TO MANAGE VISIBILITY
     const newsletterSection = document.querySelector('.newsletter-section');
     const thankYouSection = document.querySelector('.thank-you-section');
+    const submitButton = form.querySelector('button[type="submit"]');
 
-    // ----------------------------------------------------
-    // 1. Dropdown Toggle Functionality (No change needed)
-    // ----------------------------------------------------
-    
+    // Utility: Show/Hide Dropdown
     function toggleDropdown(show) {
         const shouldShow = (show === undefined) ? !dropdownList.classList.contains('active') : show;
         
@@ -25,21 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    toggleButton.addEventListener('click', (event) => {
-        event.stopPropagation();
-        toggleDropdown();
-    });
-    
-    document.addEventListener('click', (event) => {
-        if (!event.target.closest('.checkbox-dropdown-container')) {
-            toggleDropdown(false);
-        }
-    });
-
-    // ----------------------------------------------------
-    // 2. Button Text Update (No change needed)
-    // ----------------------------------------------------
-
+    // Utility: Update Button Text
     function updateButtonText() {
         const checkedCount = dropdownList.querySelectorAll('input[type="checkbox"]:checked').length;
         
@@ -52,21 +52,60 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Initialize Dropdown Listeners
+    toggleButton.addEventListener('click', (event) => {
+        event.stopPropagation();
+        toggleDropdown();
+    });
+    
+    document.addEventListener('click', (event) => {
+        if (!event.target.closest('.checkbox-dropdown-container')) {
+            toggleDropdown(false);
+        }
+    });
+
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', updateButtonText);
     });
 
-    updateButtonText();
-
+    updateButtonText(); // Set initial button text
 
     // ----------------------------------------------------
-    // 3. Form Submission and Transition Logic (NEW)
+    // ASYNCHRONOUS FORM SUBMISSION AND IMMEDIATE TRANSITION
     // ----------------------------------------------------
 
-    form.addEventListener('submit', async (event) => {
-        event.preventDefault(); // STOP the default form submission immediately
+    form.addEventListener('submit', (event) => {
+        event.preventDefault(); // Stop default browser submission
 
-        // 1. COLLECT DATA
+        // Check if browser validation passed (required inputs filled)
+        if (!form.reportValidity()) {
+            return; 
+        }
+
+        // 1. --- START UI TRANSITION IMMEDIATELY ---
+        
+        // Disable the button and show loading text (feedback for the user)
+        submitButton.disabled = true;
+        submitButton.textContent = 'Sende...'; 
+        
+        // Start the transition: Hide Newsletter
+        newsletterSection.classList.add('hidden');
+
+        // Wait a short time, then show Thank You (creates the smooth slide effect)
+        setTimeout(() => {
+            thankYouSection.classList.add('visible');
+            
+            // *** NEW: Prevent the forward/back history issue ***
+            // This replaces the current history entry with a new one 
+            // (e.g., '/thanks' or just a clean version of the current URL)
+            // so the back button is functional, but the forward button disappears.
+            history.replaceState(null, '', window.location.pathname + '#subscribed');
+
+        }, 400); 
+
+
+        // 2. --- COLLECT DATA ---
+        
         const formData = new FormData(form);
         const selectedDates = Array.from(checkboxes)
             .filter(cb => cb.checked)
@@ -77,37 +116,12 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append('dates[]', dateValue);
         });
 
-        // 2. APPLY TRANSITION (Hide Newsletter, Show Thank You)
-        // Ensure the transition starts by applying the 'hidden' class
-        newsletterSection.classList.add('hidden');
-
-        // Wait for the newsletter section to start hiding (a small delay)
-        setTimeout(() => {
-            // Apply the 'visible' class to start the Thank You transition
-            thankYouSection.classList.add('visible');
-        }, 300); // 300ms is a good point to start the next animation
-
-        // 3. SEND DATA TO SERVER (Asynchronously)
-        try {
-            // NOTE: Replace 'https://example.com/subscribe' with your actual server endpoint
-            const response = await fetch(form.action, {
-                method: form.method,
-                body: formData
+        // 3. --- START ASYNC SUBMISSION (WITHOUT AWAITING) ---
+        // Submission runs in the background. The user sees the Thank You screen regardless.
+        simulateBackendCall(formData, 1500)
+            .catch(error => {
+                console.error("Background submission failed:", error);
+                // Optionally, handle error state here if needed
             });
-
-            if (!response.ok) {
-                // Handle server error if submission fails
-                console.error("Submission failed on server:", response.statusText);
-                // Optionally, reverse the animation or show an error message
-                // newsletterSection.classList.remove('hidden');
-                // thankYouSection.classList.remove('visible');
-            }
-            // If response is successful, the user sees the thank you message.
-
-        } catch (error) {
-            console.error("Network or Fetch Error:", error);
-            // Handle network/client-side error
-        }
-
     });
 });
