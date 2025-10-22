@@ -404,3 +404,4 @@ config.php
 
 # backend stuff
 admin.php
+*admin.php
