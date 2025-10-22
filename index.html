@@ -29,30 +29,35 @@
                     <label for="email">E-Mail:</label>
                     <input type="email" id="email" name="email" required>
                     <div class="date-selection">
-                <h3>Wählen Sie Ihre Termine:</h3>
+                    <h3>Wählen Sie Ihre Termine:</h3>
                 
-                <div class="checkbox-dropdown-container">
-                    <button type="button" class="dropdown-toggle" aria-expanded="false" aria-controls="date-checkbox-list">
-                        Termine Auswählen
-                    </button>
-                    
-                    <div id="date-checkbox-list" class="dropdown-list">
-                        <label><input type="checkbox" name="dates" value="2024-05-03"> Fr, 03.05.2024</label>
-                        <label><input type="checkbox" name="dates" value="2024-05-31"> Fr, 31.05.2024</label>
-                        <label><input type="checkbox" name="dates" value="2024-06-28"> Fr, 28.06.2024</label>
-                        <label><input type="checkbox" name="dates" value="2024-07-26"> Fr, 26.07.2024</label>
-                        <label><input type="checkbox" name="dates" value="2024-08-02"> Fr, 02.08.2024</label>
-                        <label><input type="checkbox" name="dates" value="2024-08-09"> Fr, 09.08.2024</label>
-                        <label><input type="checkbox" name="dates" value="2024-08-16"> Fr, 16.08.2024</label>
-                        <label><input type="checkbox" name="dates" value="2024-08-23"> Fr, 23.08.2024</label>
-                        <label><input type="checkbox" name="dates" value="2024-08-30"> Fr, 30.08.2024</label>
+                        <div class="checkbox-dropdown-container">
+                            <button type="button" class="dropdown-toggle" aria-expanded="false" aria-controls="date-checkbox-list">
+                                Termine Auswählen
+                            </button>
+                            
+                            <div id="date-checkbox-list" class="dropdown-list">
+                                
+                                <h4 class="category-header">Premiere</h4>
+                                <label><input type="checkbox" name="dates" value="2024-05-03"> Fr, 03.05.2024</label>
+                                
+                                <h4 class="category-header">Frühsommer</h4>
+                                <label><input type="checkbox" name="dates" value="2024-05-31"> Fr, 31.05.2024</label>
+                                <label><input type="checkbox" name="dates" value="2024-06-28"> Fr, 28.06.2024</label>
+                                <label><input type="checkbox" name="dates" value="2024-07-26"> Fr, 26.07.2024</label>
+                                <label><input type="checkbox" name="dates" value="2024-08-02"> Fr, 02.08.2024</label>
+                                <label><input type="checkbox" name="dates" value="2024-08-09"> Fr, 09.08.2024</label>
+                                <label><input type="checkbox" name="dates" value="2024-08-16"> Fr, 16.08.2024</label>
+                                <label><input type="checkbox" name="dates" value="2024-08-23"> Fr, 23.08.2024</label>
+                                
+                                <h4 class="category-header">Spätsommer</h4>
+                                <label><input type="checkbox" name="dates" value="2024-08-30"> Fr, 30.08.2024</label>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
                     <button type="submit">Anmelden</button>
                 </form>
             </div>
-            
 
         </section>
 
@@ -61,10 +66,7 @@
             <p>Wir freuen uns, Sie bei unseren Tanzspaziergängen begrüßen zu dürfen.</p>
         </section>
 
-        
-
     </main>
-
     <script src="script.js"></script> 
 </body>
 </html>

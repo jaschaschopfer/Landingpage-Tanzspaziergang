@@ -382,6 +382,27 @@ section.newsletter-section {
     transform: translateY(0);
 }
 
+/* Add this block to your existing styles.css */
+.dropdown-list .category-header {
+    /* Styles for the section titles */
+    font-family: var(--font-family-body);
+    font-size: 0.9em;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-accent-primary); /* Use your primary accent color */
+    padding: 8px 15px 4px; /* Adjust padding for spacing */
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #eee;
+    pointer-events: none; /* Make sure clicking the header doesn't select an item */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Remove hover effect from the header to avoid confusion */
+.dropdown-list .category-header:hover {
+    background-color: transparent; 
+}
+
 /* END OF NEW DROPDOWN STYLES */
 
 
