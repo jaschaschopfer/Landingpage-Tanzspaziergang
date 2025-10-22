@@ -209,7 +209,7 @@ button:hover {
 
 section {
   padding: var(--spacing-base);
-  margin-bottom: calc(var(--spacing-base) * 2);
+  margin-bottom: calc(var(--spacing-base) * 4);
   box-shadow: var(--box-shadow-base);
   border-radius: var(--border-radius-base);
 }
@@ -474,10 +474,14 @@ section.hanging-pictures {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  box-shadow: none;
   max-width: 80%;
   margin-inline-start: auto; /* Align to right */
   padding: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: calc(var(--border-radius-base) * 15);
+  border-bottom-left-radius: calc(var(--border-radius-base) * 15);
+  box-shadow: var(--box-shadow-base);
 }
 
 .image {
@@ -486,6 +490,7 @@ section.hanging-pictures {
   border-top-left-radius: calc(var(--border-radius-base) * 15);
   border-bottom-left-radius: calc(var(--border-radius-base) * 15);
   width: 100%;
+  box-shadow: var(--box-shadow-base);
 }
 
 
@@ -502,6 +507,7 @@ section.hanging-pictures {
   border-bottom-left-radius: 0;
   border-top-right-radius: calc(var(--border-radius-base) * 15);
   border-bottom-right-radius: calc(var(--border-radius-base) * 15);
+  box-shadow: var(--box-shadow-base);
 }
 
 /* End of Introduction Section Styles */
@@ -531,4 +537,77 @@ section.newsletter-section-bottom {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+/* Footer Styles */
+footer {
+    background-color: var(--color-background-secondary);
+    padding: var(--spacing-base);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-media a {
+    color: var(--color-accent-primary);
+    text-decoration: none;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.social-media a:hover {
+    color: var(--color-accent-secondary);
+}
+
+
+/* End of footer styles */
+
+
+/* Animation Styles */
+
+/*
+|--------------------------------------------------------------------------
+| UNIVERSAL SCROLL ANIMATION BASE STYLES
+|--------------------------------------------------------------------------
+| This block creates the initial hidden state (off-screen left + transparent)
+| and the transition for the smooth fade/slide-in effect.
+*/
+
+/* --- Initial State for Elements to be Animated --- */
+/* Target all major content elements except the very first visible one (top newsletter form) */
+main h1, 
+main h2, 
+main p, 
+main blockquote,
+main form,
+section:not(:first-child), /* Target all sections except the top one */
+section.hanging-pictures .image
+{
+    /* 1. Initial Hidden State */
+    opacity: 0;
+    /* Use a slight slide-in from the left effect */
+    transform: translateX(-50px); 
+    
+    /* 2. Base Transition for Smoothness */
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+}
+
+/* --- Specific Override for Right-Aligned Image Sections --- */
+/* Your .hanging-pictures sections are aligned right, so they should slide in from the right */
+section.hanging-pictures {
+    opacity: 0;
+    /* Slide in from the right */
+    transform: translateX(50px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+
+/* --- Visible/Active State: JavaScript adds this class --- */
+.is-visible {
+    /* Set opacity to fully visible */
+    opacity: 1 !important; 
+    /* Set transform to their final, natural position */
+    transform: translateX(0) !important;
 }

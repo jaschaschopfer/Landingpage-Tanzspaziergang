@@ -1,4 +1,4 @@
-// Global utility for simulating backend call
+// Universal utility for simulating backend call
 function simulateBackendCall(data, delayMs = 1500) {
     // This function runs asynchronously in the background.
     // Replace this with your actual fetch request later (e.g., fetch(form.action, { method: 'POST', body: data }))
@@ -96,9 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
             thankYouSection.classList.add('visible');
             
             // *** NEW: Prevent the forward/back history issue ***
-            // This replaces the current history entry with a new one 
-            // (e.g., '/thanks' or just a clean version of the current URL)
-            // so the back button is functional, but the forward button disappears.
             history.replaceState(null, '', window.location.pathname + '#subscribed');
 
         }, 400); 
@@ -124,6 +121,60 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Optionally, handle error state here if needed
             });
     });
+    
+    
+    // -----------------------------------------------------------------
+    // --- SCROLL ANIMATION LOGIC (PORTED) ---
+    // -----------------------------------------------------------------
+
+    // 1. Define the universal selector list (matching the CSS)
+    const selectorList = [
+        // Target major sections (skip the first one, which is the newsletter form)
+        'section:not(:first-child)',
+        // Target common block elements inside the main content
+        'main h1', 
+        'main h2', 
+        'main p', 
+        'main blockquote',
+        // Target specific containers/items for the slide-in effect
+        'section.hanging-pictures .image',
+        'main form'
+    ];
+
+    const animatedElements = document.querySelectorAll(selectorList.join(', '));
+    
+    // Check if any elements were found to avoid errors
+    if (animatedElements.length > 0) {
+
+        // 2. Define the observer options
+        const observerOptions = {
+            root: null,
+            // Trigger when 5% of the element is visible
+            threshold: 0.05, 
+            // Margin: Fire the animation when the element is 30px away from the bottom edge
+            rootMargin: "0px 0px -30px 0px" 
+        };
+
+        // 3. Define the callback function
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Add the class to trigger the CSS transition
+                    entry.target.classList.add('is-visible');
+                    // Stop observing the element once it has animated to save performance
+                    observer.unobserve(entry.target); 
+                }
+            });
+        };
+
+        // 4. Create and initialize the observer
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+        // 5. Start observing every element in the list
+        animatedElements.forEach(element => {
+            observer.observe(element);
+        });
+    }
 });
 
 
@@ -160,3 +211,4 @@ bottomNewsletterSection.addEventListener('click', () => {
     });
 });
 
+// Universal scroll animation
