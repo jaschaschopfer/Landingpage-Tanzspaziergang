@@ -1,8 +1,7 @@
 <?php
 session_start();
 
-// change this password
-const ADMIN_PASS = 'kjxjke73x!mn';
+require_once __DIR__ . '/password.php'; // Passwort aus externer Datei laden
 
 // simple CSRF token
 if (empty($_SESSION['csrf'])) { $_SESSION['csrf'] = bin2hex(random_bytes(16)); }

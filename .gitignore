@@ -403,5 +403,4 @@ config.php
 .vscode
 
 # backend stuff
-admin.php
-*admin.php
+password.php
