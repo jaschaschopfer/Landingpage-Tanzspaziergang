@@ -407,3 +407,38 @@ section.newsletter-section {
 
 
 /* End of Newsletter Section Styles */
+
+/* Thank You Section Styles */
+
+/* Hide the Thank You section by default */
+section.thank-you-section {
+    display: block; /* Keep display block so transitions work, but hide visually */
+    opacity: 0;
+    max-height: 0; /* Critical: Collapse the section to zero height */
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
+    
+    /* Apply transition to height and opacity for the "good transition animation" */
+    transition: opacity 0.6s ease-in-out, max-height 0.8s ease-in-out, padding 0.8s ease-in-out;
+}
+
+/* Class to reveal the Thank You section */
+section.thank-you-section.visible {
+    opacity: 1;
+    max-height: 500px; /* Needs to be larger than the content's actual height */
+    padding: var(--spacing-base); /* Restore the original padding */
+}
+
+/* Class to hide the Newsletter section */
+section.newsletter-section.hidden {
+    opacity: 0;
+    max-height: 0; /* Critical: Collapse the section to zero height */
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    
+    /* Apply transition for the hiding animation */
+    transition: opacity 0.6s ease-out, max-height 0.8s ease-out, padding 0.8s ease-out, margin-bottom 0.8s ease-out;
+}

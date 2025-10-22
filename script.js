@@ -4,9 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const dropdownList = container.querySelector('.dropdown-list');
     const checkboxes = dropdownList.querySelectorAll('input[type="checkbox"]');
     const form = document.querySelector('.newsletter-form');
+    
+    // NEW ELEMENTS TO MANAGE VISIBILITY
+    const newsletterSection = document.querySelector('.newsletter-section');
+    const thankYouSection = document.querySelector('.thank-you-section');
 
     // ----------------------------------------------------
-    // 1. Dropdown Toggle Functionality
+    // 1. Dropdown Toggle Functionality (No change needed)
     // ----------------------------------------------------
     
     function toggleDropdown(show) {
@@ -22,20 +26,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     toggleButton.addEventListener('click', (event) => {
-        event.stopPropagation(); // Prevent document listener from closing immediately
+        event.stopPropagation();
         toggleDropdown();
     });
     
-    // Close the dropdown when clicking anywhere else on the page
     document.addEventListener('click', (event) => {
-        // Check if the click was OUTSIDE the container
         if (!event.target.closest('.checkbox-dropdown-container')) {
             toggleDropdown(false);
         }
     });
 
     // ----------------------------------------------------
-    // 2. Button Text Update (Localization for German)
+    // 2. Button Text Update (No change needed)
     // ----------------------------------------------------
 
     function updateButtonText() {
@@ -50,43 +52,62 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Attach listener to all checkboxes
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', updateButtonText);
     });
 
-    // Initial text update
     updateButtonText();
 
 
     // ----------------------------------------------------
-    // 3. Form Submission Handling (CRITICAL for data collection)
+    // 3. Form Submission and Transition Logic (NEW)
     // ----------------------------------------------------
-    // Since the checkboxes are OUTSIDE the main form, we must manually
-    // collect the selected dates and append them as hidden inputs 
-    // before the form is submitted.
 
-    form.addEventListener('submit', (event) => {
-        // Clear any previous hidden inputs to prevent duplicates on resubmission
-        form.querySelectorAll('input[name="dates_selected"]').forEach(input => input.remove());
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault(); // STOP the default form submission immediately
 
+        // 1. COLLECT DATA
+        const formData = new FormData(form);
         const selectedDates = Array.from(checkboxes)
             .filter(cb => cb.checked)
             .map(cb => cb.value);
 
-        if (selectedDates.length > 0) {
-            // Append the selected dates as hidden inputs so they get submitted with the form
-            selectedDates.forEach(dateValue => {
-                const hiddenInput = document.createElement('input');
-                hiddenInput.type = 'hidden';
-                // Use a different name to distinguish from the original checkbox name, 
-                // but if your backend expects 'dates', use 'dates' here.
-                hiddenInput.name = 'dates[]'; // Use 'dates[]' for array submission
-                hiddenInput.value = dateValue;
-                form.appendChild(hiddenInput);
+        // Append selected dates to the FormData object
+        selectedDates.forEach(dateValue => {
+            formData.append('dates[]', dateValue);
+        });
+
+        // 2. APPLY TRANSITION (Hide Newsletter, Show Thank You)
+        // Ensure the transition starts by applying the 'hidden' class
+        newsletterSection.classList.add('hidden');
+
+        // Wait for the newsletter section to start hiding (a small delay)
+        setTimeout(() => {
+            // Apply the 'visible' class to start the Thank You transition
+            thankYouSection.classList.add('visible');
+        }, 300); // 300ms is a good point to start the next animation
+
+        // 3. SEND DATA TO SERVER (Asynchronously)
+        try {
+            // NOTE: Replace 'https://example.com/subscribe' with your actual server endpoint
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: formData
             });
+
+            if (!response.ok) {
+                // Handle server error if submission fails
+                console.error("Submission failed on server:", response.statusText);
+                // Optionally, reverse the animation or show an error message
+                // newsletterSection.classList.remove('hidden');
+                // thankYouSection.classList.remove('visible');
+            }
+            // If response is successful, the user sees the thank you message.
+
+        } catch (error) {
+            console.error("Network or Fetch Error:", error);
+            // Handle network/client-side error
         }
-        
-        // Form will now submit with name, email, and selected dates
+
     });
 });
