@@ -125,3 +125,38 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     });
 });
+
+
+// When the thank you section is visible, add display:none to section.newsletter-section-bottom.
+const thankYouSection = document.querySelector('.thank-you-section');
+const newsletterBottomSection = document.querySelector('.newsletter-section-bottom');
+const observer = new MutationObserver(mutations => {
+    mutations.forEach(mutation => {
+        if (mutation.attributeName === 'class') {
+            if (thankYouSection.classList.contains('visible')) {
+                newsletterBottomSection.style.display = 'none';
+            } else {
+                newsletterBottomSection.style.display = 'flex';
+            }
+        }
+    });
+});
+
+observer.observe(thankYouSection, { attributes: true });
+
+// Smooth scroll to top when clicking on "Erinnerung erhalten" section
+const topNewsletterSection = document.getElementById('top');
+topNewsletterSection.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+const bottomNewsletterSection = document.getElementById('bottom');
+bottomNewsletterSection.addEventListener('click', () => {
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+    });
+});
+

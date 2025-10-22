@@ -493,8 +493,8 @@ section.hanging-pictures {
 /* End of Pictures Between Text Styles */
 
 
-/* Introduction Section and Info-section Styles */
-.introduction-section, .info-section {
+/* Introduction Section, Info-section and Statement Section common Styles */
+.introduction-section, .info-section, .statement-section {
   background-color: var(--color-background-secondary);
   max-width: 80%;
   margin-inline-end: auto; /* Align to left */
@@ -508,15 +508,6 @@ section.hanging-pictures {
 
 
 /* Statement Section Styles */
-.statement-section {
-  background-color: var(--color-background-secondary);
-  max-width: 80%;
-  margin-inline-end: auto; /* Align to left */
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: calc(var(--border-radius-base) * 15);
-  border-bottom-right-radius: calc(var(--border-radius-base) * 15);
-}
 
 blockquote{
   margin-bottom: var(--spacing-base);
@@ -531,3 +522,13 @@ blockquote p{
 }
 
 /* End of Statement Section Styles */
+
+
+/* Bottom Newsletter Section Styles */
+
+section.newsletter-section-bottom {
+    background-color: var(--color-background-secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
