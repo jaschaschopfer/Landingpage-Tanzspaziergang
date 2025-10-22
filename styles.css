@@ -439,6 +439,7 @@ section.thank-you-section {
     overflow: hidden;
     padding-top: 0;
     padding-bottom: 0;
+    background-color: var(--color-background-secondary);
     
     /* Apply transition to height and opacity for the "good transition animation" */
     transition: opacity 0.6s ease-in-out, max-height 0.8s ease-in-out, padding 0.8s ease-in-out;
@@ -469,20 +470,22 @@ section.newsletter-section.hidden {
 
 /* Pictures Between Text Styles */
 
-section.hanging-pictures{
+section.hanging-pictures {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   box-shadow: none;
-  padding: var(--spacing-base);
+  max-width: 80%;
+  margin-inline-start: auto; /* Align to right */
+  padding: 0;
 }
 
-section.hanging-pictures img {
-  width: auto;
-  height: 300px;
-  object-fit: cover;
-  border-radius: var(--border-radius-base);
-  box-shadow: var(--box-shadow-base);
+.image {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: calc(var(--border-radius-base) * 15);
+  border-bottom-left-radius: calc(var(--border-radius-base) * 15);
+  width: 100%;
 }
 
 
@@ -490,8 +493,8 @@ section.hanging-pictures img {
 /* End of Pictures Between Text Styles */
 
 
-/* Introduction Section Styles */
-.introduction-section {
+/* Introduction Section and Info-section Styles */
+.introduction-section, .info-section {
   background-color: var(--color-background-secondary);
   max-width: 80%;
   margin-inline-end: auto; /* Align to left */
@@ -504,13 +507,27 @@ section.hanging-pictures img {
 /* End of Introduction Section Styles */
 
 
-/* Info Section Styles */
-.info-section {
+/* Statement Section Styles */
+.statement-section {
   background-color: var(--color-background-secondary);
   max-width: 80%;
-  margin-inline-start: auto; /* Align to right */
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-top-left-radius: calc(var(--border-radius-base) * 15);
-  border-bottom-left-radius: calc(var(--border-radius-base) * 15);
+  margin-inline-end: auto; /* Align to left */
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: calc(var(--border-radius-base) * 15);
+  border-bottom-right-radius: calc(var(--border-radius-base) * 15);
 }
+
+blockquote{
+  margin-bottom: var(--spacing-base);
+}
+
+blockquote p{
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--color-text-dark);
+  margin: 0;
+  padding: 0;
+}
+
+/* End of Statement Section Styles */
