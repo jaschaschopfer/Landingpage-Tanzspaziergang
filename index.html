@@ -15,45 +15,81 @@
 
 <main>
 
-  <section class="newsletter-section" id="top">
+  <section class="newsletter-section-bottom">
     <h1>Erinnerung erhalten</h1>
     <div class="credentials-box">
-                <form action="process_form.php" method="post" class="newsletter-form">
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name" required>
-          <label for="email">E-Mail:</label>
-          <input type="email" id="email" name="email" required>
+             <form class="newsletter-form" action="process_form.php" method="POST">
+                <div class="credentials-box">
+                    <label for="name">Ihr Name:</label>
+                    <input type="text" id="name" name="name" required placeholder="Max Mustermann">
 
-          <div class="date-selection">
-            <h3>Wählen Sie Ihre Termine:</h3>
+                    <label for="email">Ihre E-Mail-Adresse:</label>
+                    <input type="email" id="email" name="email" required placeholder="max.mustermann@email.de">
+                </div>
 
-            <div class="checkbox-dropdown-container">
-              <button type="button" class="dropdown-toggle" aria-expanded="false" aria-controls="date-checkbox-list">
-                Termine auswählen
-              </button>
+                <div class="date-selection">
+                    <label>Wählen Sie Ihre Wunschtermine:</label>
+                    <div class="checkbox-dropdown-container">
+                        <button type="button" class="dropdown-toggle" aria-expanded="false" aria-controls="dropdown-list">
+                            Termine auswählen
+                        </button>
+                        
+                        <div id="dropdown-list" class="dropdown-list">
+                            
+                            <div class="category-header">Mai & Juni 2026</div>
+                            
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-05-01"> Fr, 01.05.2026 (Premiere)
+                            </label>
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-05-29"> Fr, 29.05.2026
+                            </label>
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-06-05"> Fr, 05.06.2026
+                            </label>
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-06-12"> Fr, 12.06.2026
+                            </label>
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-06-19"> Fr, 19.06.2026
+                            </label>
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-06-26"> Fr, 26.06.2026
+                            </label>
 
-              <div id="date-checkbox-list" class="dropdown-list">
-                <h4 class="category-header">Premiere</h4>
-                                <label><input type="checkbox" name="event_dates[]" value="2024-05-03"> Fr, 03.05.2024</label>
+                            <div class="category-header">Juli & August 2026</div>
 
-                <h4 class="category-header">Frühsommer</h4>
-                <label><input type="checkbox" name="event_dates[]" value="2024-05-31"> Fr, 31.05.2024</label>
-                <label><input type="checkbox" name="event_dates[]" value="2024-06-28"> Fr, 28.06.2024</label>
-                <label><input type="checkbox" name="event_dates[]" value="2024-07-26"> Fr, 26.07.2024</label>
-                <label><input type="checkbox" name="event_dates[]" value="2024-08-02"> Fr, 02.08.2024</label>
-                <label><input type="checkbox" name="event_dates[]" value="2024-08-09"> Fr, 09.08.2024</label>
-                <label><input type="checkbox" name="event_dates[]" value="2024-08-16"> Fr, 16.08.2024</label>
-                <label><input type="checkbox" name="event_dates[]" value="2024-08-23"> Fr, 23.08.2024</label>
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-07-03"> Fr, 03.07.2026
+                            </label>
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-08-14"> Fr, 14.08.2026
+                            </label>
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-08-21"> Fr, 21.08.2026
+                            </label>
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-08-28"> Fr, 28.08.2026
+                            </label>
 
-                <h4 class="category-header">Spätsommer</h4>
-                <label><input type="checkbox" name="event_dates[]" value="2024-08-30"> Fr, 30.08.2024</label>
-              </div>
-            </div>
-          </div>
+                            <div class="category-header">September 2026</div>
 
-          <button type="submit">Anmelden</button>
-        </form>
-    </div>
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-09-04"> Fr, 04.09.2026
+                            </label>
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-09-11"> Fr, 11.09.2026
+                            </label>
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-09-18"> Fr, 18.09.2026 (Finale)
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit">Jetzt Anmelden</button>
+            </form>
   </section>
 
   <section class="thank-you-section">
@@ -105,42 +141,78 @@
   <section class="newsletter-section-bottom">
     <h1>Erinnerung erhalten</h1>
     <div class="credentials-box">
-                <form action="process_form.php" method="post" class="newsletter-form">
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name" required>
-          <label for="email">E-Mail:</label>
-          <input type="email" id="email" name="email" required>
+             <form class="newsletter-form" action="process_form.php" method="POST">
+                <div class="credentials-box">
+                    <label for="name">Ihr Name:</label>
+                    <input type="text" id="name" name="name" required placeholder="Max Mustermann">
 
-          <div class="date-selection">
-            <h3>Wählen Sie Ihre Termine:</h3>
+                    <label for="email">Ihre E-Mail-Adresse:</label>
+                    <input type="email" id="email" name="email" required placeholder="max.mustermann@email.de">
+                </div>
 
-            <div class="checkbox-dropdown-container">
-              <button type="button" class="dropdown-toggle" aria-expanded="false" aria-controls="date-checkbox-list">
-                Termine auswählen
-              </button>
+                <div class="date-selection">
+                    <label>Wählen Sie Ihre Wunschtermine:</label>
+                    <div class="checkbox-dropdown-container">
+                        <button type="button" class="dropdown-toggle" aria-expanded="false" aria-controls="dropdown-list">
+                            Termine auswählen
+                        </button>
+                        
+                        <div id="dropdown-list" class="dropdown-list">
+                            
+                            <div class="category-header">Mai & Juni 2026</div>
+                            
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-05-01"> Fr, 01.05.2026 (Premiere)
+                            </label>
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-05-29"> Fr, 29.05.2026
+                            </label>
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-06-05"> Fr, 05.06.2026
+                            </label>
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-06-12"> Fr, 12.06.2026
+                            </label>
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-06-19"> Fr, 19.06.2026
+                            </label>
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-06-26"> Fr, 26.06.2026
+                            </label>
 
-              <div id="date-checkbox-list" class="dropdown-list">
-                <h4 class="category-header">Premiere</h4>
-                                <label><input type="checkbox" name="event_dates[]" value="2024-05-03"> Fr, 03.05.2024</label>
+                            <div class="category-header">Juli & August 2026</div>
 
-                <h4 class="category-header">Frühsommer</h4>
-                <label><input type="checkbox" name="event_dates[]" value="2024-05-31"> Fr, 31.05.2024</label>
-                <label><input type="checkbox" name="event_dates[]" value="2024-06-28"> Fr, 28.06.2024</label>
-                <label><input type="checkbox" name="event_dates[]" value="2024-07-26"> Fr, 26.07.2024</label>
-                <label><input type="checkbox" name="event_dates[]" value="2024-08-02"> Fr, 02.08.2024</label>
-                <label><input type="checkbox" name="event_dates[]" value="2024-08-09"> Fr, 09.08.2024</label>
-                <label><input type="checkbox" name="event_dates[]" value="2024-08-16"> Fr, 16.08.2024</label>
-                <label><input type="checkbox" name="event_dates[]" value="2024-08-23"> Fr, 23.08.2024</label>
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-07-03"> Fr, 03.07.2026
+                            </label>
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-08-14"> Fr, 14.08.2026
+                            </label>
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-08-21"> Fr, 21.08.2026
+                            </label>
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-08-28"> Fr, 28.08.2026
+                            </label>
 
-                <h4 class="category-header">Spätsommer</h4>
-                <label><input type="checkbox" name="event_dates[]" value="2024-08-30"> Fr, 30.08.2024</label>
-              </div>
-            </div>
-          </div>
+                            <div class="category-header">September 2026</div>
 
-          <button type="submit">Anmelden</button>
-        </form>
-    </div>
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-09-04"> Fr, 04.09.2026
+                            </label>
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-09-11"> Fr, 11.09.2026
+                            </label>
+                            <label>
+                                <input type="checkbox" name="event_dates[]" value="2026-09-18"> Fr, 18.09.2026 (Finale)
+                            </label>
+
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit">Jetzt Anmelden</button>
+            </form>
   </section>
 
   <footer>
