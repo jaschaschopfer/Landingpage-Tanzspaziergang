@@ -404,3 +404,4 @@ config.php
 
 # backend stuff
 password.php
+process_form.php
