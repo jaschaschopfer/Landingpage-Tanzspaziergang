@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 // --- NEW: Function to handle the actual backend call via fetch ---
 async function submitFormData(data, url) {
     // We expect the PHP script to return HTTP 200 for success, and a non-200 for failure.
@@ -19,6 +20,9 @@ async function submitFormData(data, url) {
     return true; 
 }
 
+=======
+// Checkbox Dropdown Logic
+>>>>>>> Stashed changes
 
 document.addEventListener('DOMContentLoaded', () => {
     // DOM Element References (same as before)
@@ -75,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     updateButtonText(); // Set initial button text
+<<<<<<< Updated upstream
 
     // ----------------------------------------------------
     // ASYNCHRONOUS FORM SUBMISSION AND CONFIRMED TRANSITION
@@ -115,6 +120,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     // Prevent the forward/back history issue
                     history.replaceState(null, '', window.location.pathname + '#subscribed');
+=======
+    
+    
+    // -----------------------------------------------------------------
+    // --- SCROLL ANIMATION LOGIC (PORTED) ---
+    // -----------------------------------------------------------------
+>>>>>>> Stashed changes
 
                 }, 400); // Wait for half the transition duration (0.4s of the 0.8s CSS transition)
 
